@@ -116,15 +116,15 @@ if (strpos($lowerCaseString, 'frizzantina') !== false ) {
 }
 
 /* ------ SARA ------ */
-/*
+
 if (strpos($lowerCaseString, 'gestisco') !== false) {
 
 	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendVideo";
 	// change image name and path
-	$postFields = array('chat_id' => $chatId, 'video' => new CURLFile(realpath("media/Sara.mp4")));
+	$postFields = array('chat_id' => $chatId, 'video' => new CURLFile(realpath("media/gestisco.mp4")));
 
 }
-*/
+
 
 /* ------ RAGIONE ------ */
 if (strpos($lowerCaseString, 'ragione') !== false) {
