@@ -146,6 +146,17 @@ if (strpos($lowerCaseString, 'duga') !== false) {
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile($photoArray[$arrayIndex]));
 }
 
+if (strpos($lowerCaseString, 'redenzione') !== false) {
+    $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+
+    $photoArray = [ 
+		realpath("media/poggio2.jpg"), 
+		realpath("media/poggio1.jpg"),
+	];
+	// change image name and path
+	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(array_rand($photoArray)));
+}
+
 $ch = curl_init(); 
 curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
 curl_setopt($ch, CURLOPT_URL, $botUrl); 
