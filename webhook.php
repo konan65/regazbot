@@ -140,7 +140,7 @@ if (strpos($lowerCaseString, 'ragione') !== false) {
 if (strpos($lowerCaseString, 'duga') !== false) {
     $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 
-    $photoArray = array(realpath("media/ItaliaViva.png"), realpath("media/Azione.jpg"), realpath("media/PD.jpg"), realpath("media/Europa.png"));
+    $photoArray = array(realpath("media/ItaliaViva.png"), realpath("media/Azione.jpg"), realpath("media/PD.png"), realpath("media/Europa.png"));
     $arrayIndex = rand(0, 3);
 	// change image name and path
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile($photoArray[$arrayIndex]));
