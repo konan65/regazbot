@@ -140,7 +140,7 @@ if (strpos($lowerCaseString, 'ragione') !== false) {
 if (strpos($lowerCaseString, 'duga') !== false) {
     $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 
-    $photoArray = array(realpath("media/ItaliaViva.png"), realpath("media/Azione.jpg"), realpath("media/PD.png"), realpath("media/Europa.png"));
+    $photoArray = array(realpath("media/ItaliaViva.png"), realpath("media/Azione.png"), realpath("media/PD.png"), realpath("media/Europa.png"));
     $arrayIndex = rand(0, 3);
 	// change image name and path
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile($photoArray[$arrayIndex]));
@@ -159,6 +159,7 @@ if (strpos($lowerCaseString, 'redenzione') !== false) {
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(array_rand($photoArray)));
 }
 
+/*----- PEPITINO -----*/
 if ( strpos($lowerCaseString, 'pepito') !== false || strpos($lowerCaseString, 'pepitino') !== false ) {
     $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 
