@@ -1,7 +1,7 @@
 <?php
 $content = \file_get_contents('php://input');
 $update = \json_decode($content, true);
-define("BOT_TOKEN", "902905540:AAHM34E7qJD9NK9T3MqRYVuduPmBZaubt0o");
+define("BOT_TOKEN", "5177210114:AAF227Tf8gPJ1v5kK2VNkA9VNl9x6ZrybEk");
 
 if(!$update) {
   exit;
@@ -115,13 +115,33 @@ if (strpos($lowerCaseString, 'frizzantina') !== false ) {
 
 }
 
-/* ------ SARA ------ */
+/* ------ GESTISCO ------ */
 
 if (strpos($lowerCaseString, 'gestisco') !== false) {
 
 	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendVideo";
 	// change image name and path
 	$postFields = array('chat_id' => $chatId, 'video' => new CURLFile(realpath("media/gestisco.mp4")));
+
+}
+
+/* ------ ALBERTINO ------ */
+
+if (strpos($lowerCaseString, 'gestisco') !== false) {
+
+	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+	// change image name and path
+	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("media/albertino.jpg")));
+
+}
+
+/* ------ UROGALLO ------ */
+
+if (strpos($lowerCaseString, 'gestisco') !== false) {
+
+	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendVideo";
+	// change image name and path
+	$postFields = array('chat_id' => $chatId, 'video' => new CURLFile(realpath("media/urogallo.mp4")));
 
 }
 
