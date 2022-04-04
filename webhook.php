@@ -161,10 +161,10 @@ if (strpos($lowerCaseString, 'redenzione') !== false) {
 
 /*----- PEPITINO -----*/
 if ( strpos($lowerCaseString, 'pepito') !== false || strpos($lowerCaseString, 'pepitino') !== false ) {
-    $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+    $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sednAnimation";
 
 	// change image name and path
-	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("media/pepito.gif")));
+	$postFields = array('chat_id' => $chatId, 'animation' => new CURLFile(realpath("media/pepito.gif")));
 }
 
 
