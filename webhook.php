@@ -172,7 +172,7 @@ if (strpos($lowerCaseString, 'redenzione') !== false) {
 
     $photoArray = array(realpath("media/poggio2.jpg"), realpath("media/poggio1.jpg"));
 	
-	$arrayIndex = rand(0, 2);
+	$arrayIndex = rand(0, 1);
 	// change image name and path
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile($photoArray[$arrayIndex]));
 }
