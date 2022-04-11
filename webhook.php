@@ -150,8 +150,8 @@ if (strpos($lowerCaseString, 'urogallo') !== false) {
 if (strpos($lowerCaseString, 'ragione') !== false) {
     $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 
-    $photoArray = array(realpath("media/ragione1.jpeg"), realpath("media/ragione2.jpeg"), realpath("media/ragione3.jpeg"), realpath("media/ragione4.jpeg"), realpath("media/ragione5.jpeg"));
-    $arrayIndex = rand(0, 4);
+    $photoArray = array(realpath("media/ragione1.jpeg"), realpath("media/ragione2.jpeg"), realpath("media/ragione3.jpeg"), realpath("media/ragione4.jpeg"), realpath("media/ragione5.jpeg"), realpath("media/ragione6.jpeg"));
+    $arrayIndex = rand(0, 5);
 	// change image name and path
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile($photoArray[$arrayIndex]));
 }
