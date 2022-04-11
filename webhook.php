@@ -1,7 +1,7 @@
 <?php
 $content = \file_get_contents('php://input');
 $update = \json_decode($content, true);
-define("BOT_TOKEN", "5177210114:AAF227Tf8gPJ1v5kK2VNkA9VNl9x6ZrybEk");
+define("BOT_TOKEN", "902905540:AAHM34E7qJD9NK9T3MqRYVuduPmBZaubt0o");
 
 if(!$update) {
   exit;
@@ -127,7 +127,7 @@ if (strpos($lowerCaseString, 'gestisco') !== false) {
 
 /* ------ ALBERTINO ------ */
 
-if (strpos($lowerCaseString, 'gestisco') !== false) {
+if (strpos($lowerCaseString, 'albertino') !== false) {
 
 	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 	// change image name and path
@@ -137,7 +137,7 @@ if (strpos($lowerCaseString, 'gestisco') !== false) {
 
 /* ------ UROGALLO ------ */
 
-if (strpos($lowerCaseString, 'gestisco') !== false) {
+if (strpos($lowerCaseString, 'urogallo') !== false) {
 
 	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendVideo";
 	// change image name and path
@@ -170,13 +170,11 @@ if (strpos($lowerCaseString, 'duga') !== false) {
 if (strpos($lowerCaseString, 'redenzione') !== false) {
     $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 
-    $photoArray = [ 
-		realpath("media/poggio2.jpg"), 
-		realpath("media/poggio1.jpg")
-	];
+    $photoArray = array(realpath("media/poggio2.jpg"), realpath("media/poggio1.jpg"));
 	
+	$arrayIndex = rand(0, 2);
 	// change image name and path
-	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(array_rand($photoArray)));
+	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile($photoArray[$arrayIndex]));
 }
 
 /*----- PEPITINO -----*/
