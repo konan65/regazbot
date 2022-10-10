@@ -145,6 +145,16 @@ if (strpos($lowerCaseString, 'urogallo') !== false) {
 
 }
 
+/* ------ COMPAGNO ------ */
+
+if (strpos($lowerCaseString, 'compagno') !== false) {
+
+	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+	// change image name and path
+	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("media/compagno.jpg")));
+
+}
+
 
 /* ------ RAGIONE ------ */
 if (strpos($lowerCaseString, 'ragione') !== false) {
