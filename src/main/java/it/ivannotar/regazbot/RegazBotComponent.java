@@ -1,5 +1,7 @@
 package it.ivannotar.regazbot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.*;
@@ -14,6 +16,8 @@ import java.util.Random;
 
 @Component
 public class RegazBotComponent extends TelegramLongPollingBot {
+	
+	private static final Logger logger = LoggerFactory.getLogger(RegazBotComponent.class);
 	
 	private final String MEDIA_DIR = "src/main/resources/media/";
 	
@@ -36,59 +40,63 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 			
 			var msg = update.getMessage();
 			var chatId = msg.getChatId();
+			var messageId = msg.getMessageId();
 			try {
+				
+				logger.info("Audio: msg.hasAudio: " + msg.hasAudio() + " msg.getAudio(): " + msg.getAudio() + " msg.getAudio().getDuration(): " + msg.getAudio().getDuration() + " msg.getText(): " + msg.getText());
+				
 				//AUDIO
 				if(msg.hasAudio() && msg.getAudio() != null && msg.getAudio().getDuration() > 0){
 					var reply = "Niente audio, scrivi cazzo!";
-					sendTextReply(String.valueOf(chatId), reply);
+					sendTextReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//SBRAGATA
 				else if(msg.getText().toLowerCase().contains("sbragata")){
 					var reply = "Torna a Padova";
-					sendTextReply(String.valueOf(chatId), reply);
+					sendTextReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//SPID
 				else if(msg.getText().toLowerCase().contains("spid")){
 					File file = new File(MEDIA_DIR + "spid.mp3");
 					var reply = new InputFile(file);
-					sendAudioReply(String.valueOf(chatId), reply);
+					sendAudioReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//FRIZZANTINA
 				else if(msg.getText().toLowerCase().contains("frizzantina")){
 					File file = new File(MEDIA_DIR + "frizzantina.aac");
 					var reply = new InputFile(file);
-					sendAudioReply(String.valueOf(chatId), reply);
+					sendAudioReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//GESTISCO
 				else if(msg.getText().toLowerCase().contains("gestisco")){
 					File file = new File(MEDIA_DIR + "gestisco.mp4");
 					var reply = new InputFile(file);
-					sendVideoReply(String.valueOf(chatId), reply);
+					sendVideoReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//ALBERTINO
 				else if(msg.getText().toLowerCase().contains("albertino")){
 					File file = new File(MEDIA_DIR + "albertino.jpg");
 					var reply = new InputFile(file);
-					sendPhotoReply(String.valueOf(chatId), reply);
+					sendPhotoReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//UROGALLO
 				else if(msg.getText().toLowerCase().contains("urogallo")){
 					File file = new File(MEDIA_DIR + "urogallo.mp4");
 					var reply = new InputFile(file);
-					sendVideoReply(String.valueOf(chatId), reply);
+					sendVideoReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//COMPAGNO
 				else if(msg.getText().toLowerCase().contains("compagno")){
 					File file = new File(MEDIA_DIR + "compagno.jpeg");
 					var reply = new InputFile(file);
-					sendPhotoReply(String.valueOf(chatId), reply);
+					sendPhotoReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//RAGIONE
@@ -110,7 +118,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					
 					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
-					sendPhotoReply(String.valueOf(chatId), reply);
+					sendPhotoReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//DUGA
@@ -126,7 +134,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					
 					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
-					sendPhotoReply(String.valueOf(chatId), reply);
+					sendPhotoReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//REDENZIONE
@@ -140,14 +148,14 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					
 					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
-					sendPhotoReply(String.valueOf(chatId), reply);
+					sendPhotoReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//PEPITO
 				else if(msg.getText().toLowerCase().contains("pepito") || msg.getText().toLowerCase().contains("pepitino") || msg.getText().toLowerCase().contains("bibi")){
 					File file = new File(MEDIA_DIR + "pepito.gif");
 					var reply = new InputFile(file);
-					sendAnimationReply(String.valueOf(chatId), reply);
+					sendAnimationReply(String.valueOf(chatId), reply, messageId);
 				}
 				
 				//BECCO
@@ -162,9 +170,9 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
 					if(randomElement.contains("gif")){
-						sendAnimationReply(String.valueOf(chatId), reply);
+						sendAnimationReply(String.valueOf(chatId), reply, messageId);
 					}else{
-						sendVideoReply(String.valueOf(chatId), reply);
+						sendVideoReply(String.valueOf(chatId), reply, messageId);
 					}
 					
 				}
@@ -175,28 +183,28 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 		}
 	}
 	
-	private void sendTextReply(String chatId, String msg) throws TelegramApiException {
-		var response = new SendMessage(chatId, msg);
+	private void sendTextReply(String chatId, String msg, Integer messageId) throws TelegramApiException {
+		var response = new SendMessage(chatId, msg, null, null, false, messageId, null, null, true, null);
 		execute(response);
 	}
 	
-	private void sendAudioReply(String chatId, InputFile audio) throws TelegramApiException {
-		var response = new SendAudio(chatId, audio);
+	private void sendAudioReply(String chatId, InputFile audio, Integer messageId) throws TelegramApiException {
+		var response = new SendAudio(chatId, audio, messageId, false, null, null, null, null, null, null, null, null, null, null);
 		execute(response);
 	}
 	
-	private void sendPhotoReply(String chatId, InputFile photo) throws TelegramApiException {
-		var response = new SendPhoto(chatId, photo);
+	private void sendPhotoReply(String chatId, InputFile photo, Integer messageId) throws TelegramApiException {
+		var response = new SendPhoto(chatId, photo, null, null, messageId, null, null, null, true, null);
 		execute(response);
 	}
 	
-	private void sendVideoReply(String chatId, InputFile video) throws TelegramApiException {
-		var response = new SendVideo(chatId, video);
+	private void sendVideoReply(String chatId, InputFile video, Integer messageId) throws TelegramApiException {
+		var response = new SendVideo(chatId, video, null, null, null, null, null, false, messageId, null, null, null, null, null, null);
 		execute(response);
 	}
 	
-	private void sendAnimationReply(String chatId, InputFile animation) throws TelegramApiException {
-		var response = new SendAnimation(chatId, animation);
+	private void sendAnimationReply(String chatId, InputFile animation, Integer messageId) throws TelegramApiException {
+		var response = new SendAnimation(chatId, animation, null, null, null, null, false, messageId, null, null, null, null, null, null);
 		execute(response);
 	}
 }
