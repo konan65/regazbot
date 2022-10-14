@@ -222,7 +222,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 		options.add("Presente");
 		options.add("Assente");
 		options.add("Coach");
-		var response = new SendPoll("769495246", question, options, false, "regular", false, null, false, false, null, null, null, null, null, null, null, null, null);
+		var response = new SendPoll("-769495246", question, options, false, "regular", false, null, false, false, null, null, null, null, null, null, null, null, null);
 		
 		try {
 			execute(response);
