@@ -24,7 +24,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 	
 	@Override
 	public String getBotToken() {
-		return "902905540:AAHM34E7qJD9NK9T3MqRYVuduPmBZaubt0o";
+		return "902905540:AAF7kpiSgb3vp4DVGPiqmDNIHhaPA7PA1GE";
 	}
 	
 	@Override
