@@ -1,2 +1,7 @@
 {
+	"name": "ivannotarstefano/regazbot",
+    "type": "project",
+    "require": {
+        "php": ">=7.3"
+    }
 }
