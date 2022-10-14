@@ -1,0 +1,1 @@
+web: java -jar target/regazbot-1.0.jar
