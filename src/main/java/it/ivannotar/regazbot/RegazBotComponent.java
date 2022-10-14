@@ -38,7 +38,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 			var chatId = msg.getChatId();
 			try {
 				//AUDIO
-				if(msg.hasAudio()){
+				if(msg.hasAudio() && msg.getAudio() != null && msg.getAudio().getDuration() > 0){
 					var reply = "Niente audio, scrivi cazzo!";
 					sendTextReply(String.valueOf(chatId), reply);
 				}
@@ -144,7 +144,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 				}
 				
 				//PEPITO
-				else if(msg.getText().toLowerCase().contains("pepito")){
+				else if(msg.getText().toLowerCase().contains("pepito") || msg.getText().toLowerCase().contains("pepitino") || msg.getText().toLowerCase().contains("bibi")){
 					File file = new File(MEDIA_DIR + "pepito.gif");
 					var reply = new InputFile(file);
 					sendAnimationReply(String.valueOf(chatId), reply);
@@ -154,14 +154,19 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 				else if(msg.getText().toLowerCase().contains("becco")){
 					List<String> beccoList = new ArrayList<>();
 					beccoList.add("becco1.gif");
-					beccoList.add("becco2.gif");
+					beccoList.add("becco2.mp4");
 					r = new Random();
 					randomItem = r.nextInt(beccoList.size());
 					randomElement = beccoList.get(randomItem);
 					
-					File file = new File(MEDIA_DIR + "becco2.gif");
+					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
-					sendAnimationReply(String.valueOf(chatId), reply);
+					if(randomElement.contains("gif")){
+						sendAnimationReply(String.valueOf(chatId), reply);
+					}else{
+						sendVideoReply(String.valueOf(chatId), reply);
+					}
+					
 				}
 				
 			} catch (TelegramApiException e) {
