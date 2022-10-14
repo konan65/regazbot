@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.*;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -38,15 +39,15 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 			int randomItem;
 			String randomElement;
 			
-			var msg = update.getMessage();
+			Message msg = update.getMessage();
 			var chatId = msg.getChatId();
 			var messageId = msg.getMessageId();
 			try {
 				
-				logger.info("Audio: msg.hasAudio: " + msg.hasAudio() + " msg.getAudio(): " + msg.getAudio() + " msg.getAudio().getDuration(): " + msg.getAudio().getDuration() + " msg.getText(): " + msg.getText());
+				logger.info("Audio: " + msg.toString());
 				
 				//AUDIO
-				if(msg.hasAudio() && msg.getAudio() != null && msg.getAudio().getDuration() > 0){
+				if(msg.hasAudio() && msg.getAudio() != null){
 					var reply = "Niente audio, scrivi cazzo!";
 					sendTextReply(String.valueOf(chatId), reply, messageId);
 				}
