@@ -44,10 +44,10 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 			var messageId = msg.getMessageId();
 			try {
 				
-				logger.info("Audio: " + msg.toString());
+//				logger.info("Audio: " + msg.toString());
 				
 				//AUDIO
-				if(msg.hasAudio() && msg.getAudio() != null){
+				if(msg.hasVoice() && msg.getVoice() != null){
 					var reply = "Niente audio, scrivi cazzo!";
 					sendTextReply(String.valueOf(chatId), reply, messageId);
 				}
