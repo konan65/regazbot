@@ -2,8 +2,10 @@ package it.ivannotar.regazbot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.polls.SendPoll;
 import org.telegram.telegrambots.meta.api.methods.send.*;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -207,5 +209,24 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 	private void sendAnimationReply(String chatId, InputFile animation, Integer messageId) throws TelegramApiException {
 		var response = new SendAnimation(chatId, animation, null, null, null, null, false, messageId, null, null, null, null, null, null);
 		execute(response);
+	}
+	
+	
+	@Scheduled(fixedRate = 10000000)
+	private void sendMondayPoll(){
+		logger.info("Entro nel send poll");
+		
+		String question = "Oggi allenamento dalle 20.00 alle 22.45";
+		List<String> options = new ArrayList<>();
+		options.add("Presente");
+		options.add("Assente");
+		options.add("Coach");
+		var response = new SendPoll("769495246", question, options, false, "regular", false, null, false, false, null, null, 39600000, null, null, null, null, null, null);
+		
+		try {
+			execute(response);
+		} catch (TelegramApiException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
