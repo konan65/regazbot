@@ -47,7 +47,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 			try {
 				
 //				logger.info("Audio: " + msg.toString());
-				logger.info(String.valueOf(chatId));
+//				logger.info(String.valueOf(chatId));
 				
 				//AUDIO
 				if(msg.hasVoice() && msg.getVoice() != null){
@@ -213,21 +213,21 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 	}
 	
 	
-	@Scheduled(fixedRate = 10000000)
-	private void sendMondayPoll(){
-		logger.info("Entro nel send poll");
-		
-		String question = "Oggi allenamento dalle 20.00 alle 22.45";
-		List<String> options = new ArrayList<>();
-		options.add("Presente");
-		options.add("Assente");
-		options.add("Coach");
-		var response = new SendPoll("-769495246", question, options, false, "regular", false, null, false, false, null, null, null, null, null, null, null, null, null);
-		
-		try {
-			execute(response);
-		} catch (TelegramApiException e) {
-			throw new RuntimeException(e);
-		}
-	}
+//	@Scheduled(fixedRate = 10000000)
+//	private void sendMondayPoll(){
+//		logger.info("Entro nel send poll");
+//
+//		String question = "Oggi allenamento dalle 20.00 alle 22.45";
+//		List<String> options = new ArrayList<>();
+//		options.add("Presente");
+//		options.add("Assente");
+//		options.add("Coach");
+//		var response = new SendPoll("-769495246", question, options, false, "regular", false, null, false, false, null, null, null, null, null, null, null, null, null);
+//
+//		try {
+//			execute(response);
+//		} catch (TelegramApiException e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
 }
