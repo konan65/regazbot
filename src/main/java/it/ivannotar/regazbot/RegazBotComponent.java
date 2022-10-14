@@ -159,7 +159,7 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					randomItem = r.nextInt(beccoList.size());
 					randomElement = beccoList.get(randomItem);
 					
-					File file = new File(MEDIA_DIR + "becco1.gif");
+					File file = new File(MEDIA_DIR + "becco2.gif");
 					var reply = new InputFile(file);
 					sendAnimationReply(String.valueOf(chatId), reply);
 				}
