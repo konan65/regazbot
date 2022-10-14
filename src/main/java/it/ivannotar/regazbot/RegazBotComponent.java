@@ -31,6 +31,9 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 	public void onUpdateReceived(Update update) {
 		if (update.hasMessage()){
 			Random r;
+			int randomItem;
+			String randomElement;
+			
 			var msg = update.getMessage();
 			var chatId = msg.getChatId();
 			try {
@@ -102,8 +105,8 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					ragioneList.add("ragione9.jpg");
 					ragioneList.add("ragione10.jpg");
 					r = new Random();
-					int randomitem = r.nextInt(ragioneList.size());
-					String randomElement = ragioneList.get(randomitem);
+					randomItem = r.nextInt(ragioneList.size());
+					randomElement = ragioneList.get(randomItem);
 					
 					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
@@ -113,13 +116,13 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 				//DUGA
 				else if(msg.getText().toLowerCase().contains("duga")){
 					List<String> dugaList = new ArrayList<>();
-					dugaList.add("ragione1.jpeg");
-					dugaList.add("ragione2.jpeg");
-					dugaList.add("ragione3.jpeg");
-					dugaList.add("ragione4.jpeg");
+					dugaList.add("Azione.png");
+					dugaList.add("Europa.png");
+					dugaList.add("PD.png");
+					dugaList.add("ItaliaViva.png");
 					r = new Random();
-					int randomitem = r.nextInt(dugaList.size());
-					String randomElement = dugaList.get(randomitem);
+					randomItem = r.nextInt(dugaList.size());
+					randomElement = dugaList.get(randomItem);
 					
 					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
@@ -132,8 +135,8 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					redenzioneList.add("poggio1.jpg");
 					redenzioneList.add("poggio2.jpg");
 					r = new Random();
-					int randomitem = r.nextInt(redenzioneList.size());
-					String randomElement = redenzioneList.get(randomitem);
+					randomItem = r.nextInt(redenzioneList.size());
+					randomElement = redenzioneList.get(randomItem);
 					
 					File file = new File(MEDIA_DIR + randomElement);
 					var reply = new InputFile(file);
@@ -153,10 +156,10 @@ public class RegazBotComponent extends TelegramLongPollingBot {
 					beccoList.add("becco1.gif");
 					beccoList.add("becco2.gif");
 					r = new Random();
-					int randomitem = r.nextInt(beccoList.size());
-					String randomElement = beccoList.get(randomitem);
+					randomItem = r.nextInt(beccoList.size());
+					randomElement = beccoList.get(randomItem);
 					
-					File file = new File(MEDIA_DIR + randomElement);
+					File file = new File(MEDIA_DIR + "becco1.gif");
 					var reply = new InputFile(file);
 					sendAnimationReply(String.valueOf(chatId), reply);
 				}
